@@ -1,0 +1,51 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <title>MojSodnik</title>
+  <meta name="MojSodnik aplikacija za košarkarske sodnike" content="MojSodnik">
+  <meta name="Klavdij Starman" content="">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+    <div class="container">
+        <div class="form_container">
+            <h1>MojSodnik</h1>
+            <h2>Registracija uporabnika</h2>
+            <label class="description">Vpišite pravilno ime in priimek sicer vas aplikacija ne bo pravilno povezala z vašimi podatki in vam ne bo pravilno delovala.</label>
+            <form id="login" action="index.html" method="post">
+                <div class="form_element">
+                    <label>Ime</label>
+                    <input type="text" name="name" value="" placeholder="Vnesite ime" required>
+                </div>
+                <div class="form_element">
+                    <label>Priimek</label>
+                    <input type="text" name="name" value="" placeholder="Vnesite priimek" required>
+                </div>
+                <div class="form_element">
+                    <label>Uporabniško ime</label>
+                    <input type="text" name="username" value="" placeholder="Vnesite uporabniško ime"required>
+                </div>
+                <div class="form_element">
+                    <label>Geslo</label>
+                    <input type="password" name="password" value="" placeholder="Vnesite geslo" required>
+                </div>
+                <div class="form_element">
+                    <label>Ponovno vpišite geslo</label>
+                    <input type="password" name="password_again" value="" placeholder="Ponovno vnesite geslo" required>
+                </div>
+                <br>
+                <div class="form_element margin_top">
+                    <button type="submit" form="login" value="Registracija" class="button_submit two_buttons">Potrdi</button>
+                    <button type="" value="Prekliči" class="button_submit">Pobriši podatke</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

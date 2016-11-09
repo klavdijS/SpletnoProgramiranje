@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <title>The HTML5 Herald</title>
+  <title>MojSodnik</title>
   <meta name="MojSodnik aplikacija za košarkarske sodnike" content="MojSodnik">
   <meta name="Klavdij Starman" content="">
 
@@ -15,7 +15,22 @@
 <body>
     <div class="container">
         <div class="form_container">
-            
+            <h1>MojSodnik</h1>
+            <form id="login" action="index.html" method="post">
+                <div class="form_element">
+                    <label>Uporabniško ime</label>
+                    <input type="text" name="username" value="" placeholder="Uporabniško ime"required>
+                </div>
+                <div class="form_element">
+                    <label>Geslo</label>
+                    <input type="password" name="password" value="" placeholder="Geslo" required>
+                </div>
+                <br>
+                <label class="register_description">Nimate uporabniškega računa? <a href="registration.html">Registriracija</a></label>
+                <div class="form_element margin_top">
+                    <button type="submit" form="login" value="Prijava" class="button_submit">Prijava</button>
+                </div>
+            </form>
         </div>
     </div>
 </body>

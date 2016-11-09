@@ -1,5 +1,20 @@
+@font-face {
+    font-family: 'Roboto'; /*a name to be used later*/
+    src: url('./Roboto/Roboto-Regular.ttf'); /*URL to font*/
+}
+
+@font-face {
+    font-family: 'Roboto-Thin'; /*a name to be used later*/
+    src: url('./Roboto/Roboto-Thin.ttf'); /*URL to font*/
+}
+
+@font-face {
+    font-family: 'Roboto-Bold'; /*a name to be used later*/
+    src: url('./Roboto/Roboto-Bold.ttf'); /*URL to font*/
+}
 html {
-    background-color: #ffb74d;
+    font-family: 'Roboto';
+    background-color: #FF9800;
 }
 
 .container {
@@ -23,11 +38,134 @@ html {
 }
 
 .form_container {
+    overflow: scroll;
+    text-align: center;
     transform: translate(-50%,-50%);
     left : 50%;
     top: 50%;
     position: absolute;
-    background-color: blue;
+    background-color: #FFE0B2;
     width: 50%;
-    height: 50%;
+    height: 55%;
+    /*BOX SHADOW*/
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14),0 1px 18px 0 rgba(0,0,0,0.12),0 3px 5px -1px rgba(0,0,0,0.3);
+}
+
+.form_container form {
+    width: 100%;
+    height: 70%;
+}
+
+.form_container h1 {
+    font-size: 3.5em;
+    color: #757575;
+    font-family: 'Roboto-Bold';
+    vertical-align: middle;
+    line-height: 51px;
+}
+
+.form_container label {
+    display: inline-block;
+    text-align: right;
+}
+
+.form_element {
+    margin: 0 auto;
+    width: 60%;
+    margin-top: 0.5em;
+    height: 25%;
+}
+
+.form_element label {
+    color: #424242;
+    position: relative;
+    left: 0;
+    font-size: 0.7rem;
+    cursor: text;
+    float: left;
+}
+
+input[type=text], input[type=password] {
+    padding-left: 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #9e9e9e;
+    border-radius: 0;
+    outline: none;
+    height: 2.5rem;
+    width: 100%;
+    font-size: 1rem;
+    margin: 5px 0 20px 0;
+    cursor: text;
+}
+
+input {
+    color: inherit;
+    font: inherit;
+}
+
+input[type=text]:focus, input[type=password]:focus{
+    border-bottom: 1px solid #03A9F4;
+    box-shadow: 0 1px 0 0 #03A9F4;
+}
+
+
+.register_description {
+    font-size: 0.7rem;
+}
+
+.register_description a {
+    text-decoration: none;
+    color:#03A9F4;
+}
+
+.register_description a:hover {
+    cursor: pointer;
+}
+
+.register_description a:active {
+    color: #FF9800;
+}
+
+.form_element .button_submit {
+    width: 30%;
+    color:#FFF;
+    background-color: #03A9F4;
+    text-align: center;
+    border: none;
+    border-radius: 2px;
+    height: 41px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    transition: background-color .4s ease-out;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+.form_element .button_submit:hover {
+    background-color: #29b6f6;
+    cursor: pointer;
+}
+
+.form_element .button_submit:active {
+    margin-top: 2px;
+}
+
+.form_element .button_submit:focus {
+    outline: none;
+}
+
+.form_element.margin_top {
+    margin-top: 2em;
+}
+
+label.description {
+    width: 50%;
+    text-align: center;
+    color: #424242;
+    font-size: 0.75em;
+}
+
+
+.button_submit.two_buttons {
+    margin-right: 3rem;
 }
