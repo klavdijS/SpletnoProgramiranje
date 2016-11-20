@@ -109,6 +109,10 @@ input[type=text]:focus, input[type=password]:focus{
     box-shadow: 0 1px 0 0 #03A9F4;
 }
 
+input#password_again {
+    margin-bottom: 0;
+}
+
 
 .register_description {
     font-size: 0.7rem;
@@ -147,7 +151,7 @@ input[type=text]:focus, input[type=password]:focus{
 }
 
 .form_element .button_submit:active {
-    margin-top: 2px;
+    margin-top: 1px;
 }
 
 .form_element .button_submit:focus {
@@ -168,4 +172,34 @@ label.description {
 
 .button_submit.two_buttons {
     margin-right: 3rem;
+}
+
+.logo {
+    display: inline-block;
+    width: 5em;
+    vertical-align: middle;
+    margin: 0 5px 0 5px;
+}
+
+span.title > h1 {
+    display: inline-block;
+}
+
+#warning_msg.visible {
+    margin-top: 1rem;
+    text-align: left;
+    color: #ef5350;
+    visibility: visible;
+}
+
+#warning_msg.hidden {
+    margin-top: 1rem;
+    text-align: left;
+    color: #ef5350;
+    visibility: hidden;
+}
+
+.false_input {
+    border-bottom: 1px solid #ef5350;
+    box-shadow: 0 1px 0 0 #ef5350;
 }

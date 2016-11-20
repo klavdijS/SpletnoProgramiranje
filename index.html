@@ -15,11 +15,11 @@
 <body>
     <div class="container">
         <div class="form_container">
-            <h1>MojSodnik</h1>
+            <span class="title"><h1>Moj</h1><img class="logo" src="css/assets/logo_klavdij.svg"><h1>Sodnik</h1></span>
             <form id="login" action="index.html" method="post">
                 <div class="form_element">
                     <label>Uporabniško ime</label>
-                    <input type="text" name="username" value="" placeholder="Uporabniško ime"required>
+                    <input type="text" name="username" value="" placeholder="Uporabniško ime" required pattern="[a-zA-Z0-9]+">
                 </div>
                 <div class="form_element">
                     <label>Geslo</label>

@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <script src="js/script.js"></script>
   <title>MojSodnik</title>
   <meta name="MojSodnik aplikacija za košarkarske sodnike" content="MojSodnik">
   <meta name="Klavdij Starman" content="">
@@ -15,34 +16,35 @@
 <body>
     <div class="container">
         <div class="form_container">
-            <h1>MojSodnik</h1>
+            <span class="title"><h1>Moj</h1><img class="logo" src="css/assets/logo_klavdij.svg"><h1>Sodnik</h1></span>
             <h2>Registracija uporabnika</h2>
             <label class="description">Vpišite pravilno ime in priimek sicer vas aplikacija ne bo pravilno povezala z vašimi podatki in vam ne bo pravilno delovala.</label>
-            <form id="login" action="index.html" method="post">
+            <form id="register" action="index.html" method="post">
                 <div class="form_element">
                     <label>Ime</label>
-                    <input type="text" name="name" value="" placeholder="Vnesite ime" required>
+                    <input type="text" id="name" name="name" value="" placeholder="Vnesite ime" required title="Ime">
                 </div>
                 <div class="form_element">
                     <label>Priimek</label>
-                    <input type="text" name="name" value="" placeholder="Vnesite priimek" required>
+                    <input type="text" id="surname" name="surname" value="" placeholder="Vnesite priimek" required title="Priimek">
                 </div>
                 <div class="form_element">
                     <label>Uporabniško ime</label>
-                    <input type="text" name="username" value="" placeholder="Vnesite uporabniško ime"required>
+                    <input type="text" id="username" name="username" value="" placeholder="Vnesite uporabniško ime"required title="Uporabniško ime">
                 </div>
                 <div class="form_element">
                     <label>Geslo</label>
-                    <input type="password" name="password" value="" placeholder="Vnesite geslo" required>
+                    <input type="password" id="password" name="password" value="" placeholder="Vnesite geslo" required title="Geslo">
                 </div>
                 <div class="form_element">
                     <label>Ponovno vpišite geslo</label>
-                    <input type="password" name="password_again" value="" placeholder="Ponovno vnesite geslo" required>
+                    <input type="password" id="password_again" name="password_again" value="" placeholder="Ponovno vnesite geslo" required title="Ponovno vpišite geslo">
+                    <div class="hidden" id="warning_msg"><h5 class="password_header_warning">Gesli se ne ujemata!</h5></div>
                 </div>
                 <br>
                 <div class="form_element margin_top">
-                    <button type="submit" form="login" value="Registracija" class="button_submit two_buttons">Potrdi</button>
-                    <button type="" value="Prekliči" class="button_submit">Pobriši podatke</button>
+                    <button id="submit_registry" type="submit" value="Registracija" class="button_submit two_buttons">Potrdi</button>
+                    <button id="delete_data" type="reset" value="Prekliči" class="button_submit">Pobriši podatke</button>
                 </div>
             </form>
         </div>
