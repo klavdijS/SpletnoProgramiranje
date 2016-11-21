@@ -1,0 +1,122 @@
+@font-face {
+    font-family: 'Roboto'; /*a name to be used later*/
+    src: url('./Roboto/Roboto-Regular.ttf'); /*URL to font*/
+}
+
+@font-face {
+    font-family: 'Roboto-Thin'; /*a name to be used later*/
+    src: url('./Roboto/Roboto-Thin.ttf'); /*URL to font*/
+}
+
+@font-face {
+    font-family: 'Roboto-Bold'; /*a name to be used later*/
+    src: url('./Roboto/Roboto-Bold.ttf'); /*URL to font*/
+}
+html {
+    font-family: 'Roboto';
+}
+body {
+    margin:0;
+}
+.side-nav {
+    width: 25%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    margin:0;
+    height:100%;
+    background-color: #FFFFFF;
+    padding:0;
+    box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14),0 3px 14px 2px rgba(0,0,0,0.12),0 5px 5px -3px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14),0 3px 14px 2px rgba(0,0,0,0.12),0 5px 5px -3px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14),0 3px 14px 2px rgba(0,0,0,0.12),0 5px 5px -3px rgba(0,0,0,0.3);
+}
+
+.container-dashboard {
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+
+}
+nav {
+    width: 100%;
+    background-color: #ffb74d;
+    height: 122px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+.container {
+    margin: 0 auto;
+    width: 85%;
+    height: 100%;
+}
+
+.spinner-month {
+    height: 100%;
+    width: 50%;
+    float: right;
+}
+.spinner-season {
+    height: 100%;
+    width: 50%;
+    float: left;
+}
+
+.title {
+    line-height: 122px;
+    font-size: 44px;
+    color: #FFFFFF;
+    font-family: 'Roboto-Thin';
+    vertical-align: middle;
+}
+
+.selector {
+    height: 30px;
+    margin-left: 2rem;
+}
+
+main {
+    padding-left: 25%;
+}
+
+header {
+    padding-left: 25%;
+}
+
+.main-container {
+    width: 1280px;
+    margin: 0 auto;
+    background-color: red;
+}
+
+.logo {
+    text-align: center;
+    margin-top: 10%;
+}
+
+#logo-container {
+    height: 57px;
+    margin-bottom: 32px;
+}
+
+#web-logo {
+    display: inline-block;
+    height:100%;
+}
+
+ul.side-nav.fixed-nav li {
+    line-height: 44px;
+}
+
+.logo-img {
+    margin: 0 auto;
+    width: 6em;
+    cursor: pointer;
+}
+
+.subtitle {
+    display: block;
+    font-size: 44px;
+    font-family: 'Roboto-Thin';
+    vertical-align: middle;
+}
