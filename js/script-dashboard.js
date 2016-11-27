@@ -47,4 +47,22 @@ window.onload = function () {
             modal.style.display = "none";
         }
     };
+
+    var tableContent = document.getElementById('table_content');
+
+    resizeMe();
+
+    window.onresize = function() {
+        resizeMe();
+    };
+
+    function resizeMe() {
+        var width = screen.width;
+        if (width < 800) {
+            tableContent.className = "table-content clear-height";
+        }
+        else {
+            tableContent.className = "table-content";
+        }
+    }
 };

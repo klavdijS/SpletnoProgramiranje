@@ -20,7 +20,7 @@
 
 html {
     font-family: 'Roboto';
-    overflow: auto;
+    overflow: hidden;
 }
 body {
     margin:0;
@@ -168,7 +168,6 @@ ul.side-nav.fixed-nav li {
 
 table {
     border-collapse:collapse;
-    overflow:auto;
 }
 
 th,td {
@@ -208,7 +207,9 @@ tr:hover {
 }
 
 .table-content {
-    overflow: auto;
+    overflow: hidden;
+    height: 500px;
+    overflow-y: scroll;
 }
 
 nav.footer-nav {
@@ -374,7 +375,7 @@ textarea {
     background-color: #ffffff;
     width: 60%;
     margin: 0 auto;
-    margin-top: 5%;
+    margin-top: 2.5%;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2);
 }
 
@@ -493,4 +494,8 @@ input#password_again {
     text-align: left;
     color: #ef5350;
     visibility: visible;
+}
+
+.clear-height {
+    height: auto;
 }

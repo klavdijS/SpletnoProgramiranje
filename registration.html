@@ -23,30 +23,30 @@
         <h2>Registracija uporabnika</h2>
         <label class="description">Vpišite pravilno ime in priimek sicer vas aplikacija ne bo pravilno povezala z vašimi
             podatki in vam ne bo pravilno delovala.</label>
-        <form id="register" action="index.html" method="post">
+        <form id="register" action="index.html">
             <div class="form_element">
                 <label>Ime</label>
-                <input type="text" id="name" name="name" value="" placeholder="Vnesite ime" required title="Ime">
+                <input type="text" id="name" name="name" value="" placeholder="Vnesite ime" required title="Ime" pattern="[a-zA-Z]+">
             </div>
             <div class="form_element">
                 <label>Priimek</label>
                 <input type="text" id="surname" name="surname" value="" placeholder="Vnesite priimek" required
-                       title="Priimek">
+                       title="Priimek" pattern="[a-zA-Z]+">
             </div>
             <div class="form_element">
                 <label>Uporabniško ime</label>
                 <input type="text" id="username" name="username" value="" placeholder="Vnesite uporabniško ime" required
-                       title="Uporabniško ime">
+                       title="Uporabniško ime" pattern="[a-zA-Z0-9]+">
             </div>
             <div class="form_element">
                 <label>Geslo</label>
                 <input type="password" id="password" name="password" value="" placeholder="Vnesite geslo" required
-                       title="Geslo">
+                       title="Geslo" pattern="[a-zA-Z0-9]+">
             </div>
             <div class="form_element">
                 <label>Ponovno vpišite geslo</label>
                 <input type="password" id="password_again" name="password_again" value=""
-                       placeholder="Ponovno vnesite geslo" required title="Ponovno vpišite geslo">
+                       placeholder="Ponovno vnesite geslo" required title="Ponovno vpišite geslo" pattern="[a-zA-Z0-9]+">
                 <div class="hidden" id="warning_msg"><h5 class="password_header_warning">Gesli se ne ujemata!</h5></div>
             </div>
             <br>

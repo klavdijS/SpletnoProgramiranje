@@ -50,7 +50,6 @@ window.onload = function () {
     var saveButton = document.getElementById('save-btn');
 
     saveButton.onclick = function changeParams () {
-        var elements = form.elements;
 
         var password = document.getElementById('change-password').value;
         var passwordAgain = document.getElementById('change-password-again').value;
