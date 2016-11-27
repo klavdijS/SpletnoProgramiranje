@@ -111,6 +111,7 @@ header,footer {
 
 ul.side-nav.fixed-nav li {
     line-height: 44px;
+    list-style: none;
 }
 
 .logo-img {
@@ -121,7 +122,7 @@ ul.side-nav.fixed-nav li {
 
 .subtitle {
     display: block;
-    font-size: 44px;
+    font-size: 34px;
     font-family: 'Roboto-Thin';
     vertical-align: middle;
 }
