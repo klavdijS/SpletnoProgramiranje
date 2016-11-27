@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/styles-dashboard.css">
+    <title>MojSodnik</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <meta name="MojSodnik aplikacija za košarkarske sodnike" content="MojSodnik">
+    <meta name="Klavdij Starman" content="">
+    <script src="js/script-dashboard-settings.js"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+<header>
+    <nav class="top-navigation">
+        <div class="container">
+            <div class="spinner-season">
+                <a class="title">Nastavitve</a>
+            </div>
+        </div>
+    </nav>
+    <ul id="side-navigation" class="side-nav fixed-nav">
+        <li class="logo">
+            <img class="logo-img" src="css/assets/logo_klavdij.svg">
+            <a class="subtitle">MojSodnik</a>
+        </li>
+        <li class="account">
+            <i class="material-icons">account_circle</i>
+            <span class="username">
+                    Klavdij Starman
+                </span>
+        </li>
+        <li class="account pointer" onclick="location.href='dashboard.html'">
+            <i class="material-icons">home</i>
+            <span class="username">
+                Domov
+            </span>
+        </li>
+        <li class="account pointer" onclick="location.href='dashboard-settings.html'">
+            <i class="material-icons">settings</i>
+            <span class="username">
+                Nastavitve
+            </span>
+        </li>
+        <li class="account pointer" onclick="location.href='index.html'">
+            <i class="material-icons">exit_to_app</i>
+            <span class="username">
+                Odjava
+            </span>
+        </li>
+        <li class="footer">
+            <span class="footer-description">Klavdij Starman &copy; 2016</span>
+        </li>
+    </ul>
+</header>
+<main>
+    <div class="main-container">
+        <div class="change-password">
+            <form id="settings" action="dashboard.html">
+                <div class="form_element">
+                    <label for="change-password">Vpišite novo geslo</label>
+                    <input id="change-password" type="password" name="change-password">
+                </div>
+                <div class="form_element no-padding-top">
+                    <label for="change-password-again">Ponovno vpišite novo geslo</label>
+                    <input id="change-password-again" type="password" name="change-password-again">
+                </div>
+                <div class="form_element no-padding-top">
+                    <label for="file-upload" id="file-upload-label">Naloži sliko profila</label>
+                    <input id="file-upload" type="file" name="file-upload">
+                    <output id="list"></output>
+                </div>
+                <div class="form_element no-padding-top">
+                    <label for="distance" id="distance">Obračunavanje kilometrine <input id="distance-checkbox" type="checkbox" name="distance" checked></label>
+                </div>
+                <div class="form_element margin_top no-padding-top">
+                    <div class="hidden" id="warning_msg"><h5 class="password_header_warning">Gesli se ne ujemata!</h5></div>
+                    <button type="submit" form="settings" value="Shrani" class="button_submit" id="save-btn">Shrani</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+</html>

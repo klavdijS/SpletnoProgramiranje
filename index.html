@@ -2,38 +2,43 @@
 
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <title>MojSodnik</title>
-  <meta name="MojSodnik aplikacija za košarkarske sodnike" content="MojSodnik">
-  <meta name="Klavdij Starman" content="">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <title>MojSodnik</title>
+    <link rel="stylesheet" media="(max-width: 800px)" href="css/responsive-styles.css">
+    <meta name="viewport" content="width=device-width" />
+    <meta name="MojSodnik aplikacija za košarkarske sodnike" content="MojSodnik">
+    <meta name="Klavdij Starman">
+    <script src="js/script-login.js"></script>
 
-  <!--[if lt IE 9]>
+    <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-  <![endif]-->
+    <![endif]-->
 </head>
 <body>
-    <div class="container">
-        <div class="form_container">
-            <div class="title">
-                <h1>Moj</h1><img class="logo" src="css/assets/logo_klavdij.svg"><h1>Sodnik</h1>
-            </div>
-            <form id="login" action="index.html" method="post">
-                <div class="form_element">
-                    <label>Uporabniško ime</label>
-                    <input type="text" name="username" value="" placeholder="Uporabniško ime" required pattern="[a-zA-Z0-9]+">
-                </div>
-                <div class="form_element">
-                    <label>Geslo</label>
-                    <input type="password" name="password" value="" placeholder="Geslo" required>
-                </div>
-                <br>
-                <label class="register_description">Nimate uporabniškega računa? <a href="registration.html">Registriracija</a></label>
-                <div class="form_element margin_top">
-                    <button type="submit" form="login" value="Prijava" class="button_submit">Prijava</button>
-                </div>
-            </form>
+<div class="container">
+    <div class="form_container">
+        <div class="title">
+            <h1>Moj</h1><img class="logo" src="css/assets/logo_klavdij.svg">
+            <h1>Sodnik</h1>
         </div>
+        <form id="login" action="dashboard.html" method="post">
+            <div class="form_element">
+                <label>Uporabniško ime</label>
+                <input type="text" name="username" value="" placeholder="Uporabniško ime" id="username" required
+                       pattern="[a-zA-Z0-9]+">
+            </div>
+            <div class="form_element">
+                <label>Geslo</label>
+                <input type="password" name="password" value="" placeholder="Geslo" required id="password">
+                <div class="hidden" id="warning_msg"><h5 class="password_header_warning">Uporabniško ime in geslo se ne ujemata!</h5></div>
+            </div>
+            <div class="form_element">
+                <button type="submit" id="login-btn" form="login" value="Prijava" class="button_submit">Prijava</button>
+            </div>
+        </form>
+        <label class="register_description">Nimate uporabniškega računa?<a href='registration.html'>Registracija</a></label>
     </div>
+</div>
 </body>
 </html>

@@ -12,9 +12,15 @@
     font-family: 'Roboto-Bold'; /*a name to be used later*/
     src: url('./Roboto/Roboto-Bold.ttf'); /*URL to font*/
 }
+
+@font-face {
+    font-family: 'Roboto-Light'; /*a name to be used later*/
+    src: url('./Roboto/Roboto-Light.ttf'); /*URL to font*/
+}
+
 html {
     font-family: 'Roboto';
-    overflow: hidden;
+    overflow: auto;
 }
 body {
     margin:0;
@@ -67,7 +73,7 @@ nav {
     line-height: 122px;
     font-size: 44px;
     color: #FFFFFF;
-    font-family: 'Roboto-Thin';
+    font-family: 'Roboto-Light';
     vertical-align: middle;
 }
 
@@ -85,7 +91,6 @@ header,footer {
 }
 
 .main-container {
-    width: 1280px;
     margin: 0 auto;
 }
 
@@ -122,7 +127,12 @@ ul.side-nav.fixed-nav li {
 }
 
 .account {
+    padding-left:2rem;
     margin-top: 2rem;
+}
+
+.pointer {
+    cursor: pointer;
 }
 
 .account > i {
@@ -130,7 +140,6 @@ ul.side-nav.fixed-nav li {
     padding-left: 1rem;
     display: inline-block;
     vertical-align: middle;
-    cursor: pointer;
 }
 
 .username {
@@ -199,7 +208,6 @@ tr:hover {
 }
 
 .table-content {
-    height: 39vw;
     overflow: auto;
 }
 
@@ -209,6 +217,7 @@ nav.footer-nav {
     bottom:0;
     width:75%;
     height: 200px;
+    background-color: #ff9800;
 }
 
 td i {
@@ -219,10 +228,8 @@ td i {
 }
 
 .summary {
+    font-family: 'Roboto-Light';
     color: #fff;
-    text-shadow: #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px,
-    #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px;
-    -webkit-font-smoothing: antialiased;
     font-weight: 600;
     float: right;
     width: 50%;
@@ -232,18 +239,14 @@ td i {
 
 .takse {
     display: block;
-    float: right;
     clear: right;
     font-size: 24px;
 }
 
 .commute {
     padding-top: 10px;
-    padding-bottom: 2rem;
     font-size: 22px;
     display: block;
-    float: right;
-    clear: right;
 }
 
 .cash {
@@ -251,10 +254,243 @@ td i {
 }
 
 .monthly {
-    border-top: solid 1px #212121;
+    border-top: solid 1px #ffffff;
     font-size: 28px;
-    padding-top: 2rem;
     display: block;
+}
+
+/*TODO PREUREDI TA CSS*/
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
     float: right;
-    clear: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.edit-td {
+    cursor: pointer;
+}
+.modal-header {
+    padding: 2px 16px;
+}
+.modal-footer {
+    border-top: 1px solid #d0d0d0;
+    padding: 2px 16px;
+    overflow: auto;
+}
+
+.modal-body {
+    padding: 2px 16px;
+}
+
+.flat-btn {
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    float: right;
+    cursor: pointer;
+}
+
+.flat-btn:hover {
+    background-color: rgba(0,0,0,0.1);
+    box-shadow: none;
+}
+
+.btn-container {
+    padding-top: 10px;
+}
+
+.textarea {
+    z-index: auto;
+    position: relative;
+    line-height: 22px;
+    font-size: 15px;
+    transition: none;
+    background: transparent !important;
+    height: 22px;
+    overflow-y: hidden;
+    padding: .8rem 0 1.6rem 0;
+    resize: none;
+    min-height: 3rem;
+}
+.text-area {
+    padding-bottom: 1rem;
+}
+textarea {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #9e9e9e;
+    border-radius: 0;
+    outline: none;
+    height: 3rem;
+    width: 100%;
+    font-size: 1rem;
+    margin: 0 0 20px 0;
+    padding: 0;
+    box-shadow: none;
+    box-sizing: content-box;
+    transition: all 0.3s;
+}
+
+.change-password {
+    background-color: #ffffff;
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 5%;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+.form_element {
+    margin: 0 auto;
+    width: 60%;
+    margin-top: 0.5em;
+    height: 25%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.form_element label {
+    color: #424242;
+    position: relative;
+    left: 0;
+    font-size: 1.7rem;
+    cursor: text;
+    float: left;
+}
+
+.no-padding-top {
+    padding-top: 0;
+}
+
+.form_element input[type=file] {
+    padding-top: 1.5rem;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#distance-checkbox {
+    margin-left: 1rem;
+}
+
+.form_element .button_submit {
+    width: 30%;
+    color:#FFF;
+    background-color: #03A9F4;
+    text-align: center;
+    border: none;
+    border-radius: 2px;
+    height: 41px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    transition: background-color .4s ease-out;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2);
+    margin-left: 35%;
+}
+
+.form_element .button_submit:hover {
+    background-color: #29b6f6;
+    cursor: pointer;
+}
+
+.form_element .button_submit:active {
+    margin-top: 1px;
+}
+
+.form_element .button_submit:focus {
+    outline: none;
+}
+
+.form_element.margin_top {
+    margin-top: 5em;
+}
+
+input[type=text], input[type=password] {
+    padding-left: 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #9e9e9e;
+    border-radius: 0;
+    outline: none;
+    height: 3.5rem;
+    width: 100%;
+    font-size: 2rem;
+    margin: 5px 0 20px 0;
+    cursor: text;
+}
+
+input {
+    color: inherit;
+    font: inherit;
+}
+
+input[type=text]:focus, input[type=password]:focus{
+    border-bottom: 1px solid #03A9F4;
+    box-shadow: 0 1px 0 0 #03A9F4;
+}
+
+input#password_again {
+    margin-bottom: 0;
+}
+
+.small-screen-container {
+    margin-top: 30%;
+    width: 100%;
+}
+
+.checkbox-responsive {
+    width: 36px;
+    height: 36px;
+}
+
+
+#warning_msg.hidden {
+    margin-top: 1rem;
+    text-align: left;
+    color: #ef5350;
+    visibility: hidden;
+}
+
+#warning_msg.visible {
+    margin-top: 1rem;
+    text-align: left;
+    color: #ef5350;
+    visibility: visible;
 }

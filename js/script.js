@@ -27,10 +27,6 @@ window.onload = function() {
             }
         }
 
-        console.log(data);
-        console.log(valid);
-
-
         var password = document.getElementById('password').value;
         var verifyPassword = document.getElementById('password_again').value;
         var warningMessage = document.getElementById('warning_msg');
@@ -45,7 +41,7 @@ window.onload = function() {
             warningMessage.children[0].innerHTML = "Izpolnite vsa polja!";
         }
 
-    }
+    };
 
     deleteButton.onclick = function () {
 
@@ -56,4 +52,4 @@ window.onload = function() {
             item.value = "";
         }
     }
-}
+};

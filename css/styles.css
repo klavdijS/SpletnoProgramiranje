@@ -53,12 +53,12 @@ html {
 .form_container form {
     width: 100%;
     padding-top: 7%;
-    padding-bottom: 10%;
+    padding-bottom: 5%;
 }
 
 .form_container h1 {
     font-size: 3.5em;
-    color: #757575;
+    color: #212121;
     font-family: 'Roboto-Bold';
     vertical-align: middle;
     line-height: 51px;
@@ -122,6 +122,7 @@ input#password_again {
 
 .register_description {
     font-size: 0.7rem;
+    padding-bottom: 15%;
 }
 
 .register_description a {
@@ -189,11 +190,11 @@ label.description {
 
 .title > h1 {
     display: inline-block;
-    font-size: 56pt;
+    font-size: 40pt;
     margin: 0;
 }
 .title {
-    padding-top: 10%;
+    padding-top: 15%;
 }
 
 #warning_msg.visible {
@@ -214,7 +215,4 @@ label.description {
     border-bottom: 1px solid #ef5350;
     box-shadow: 0 1px 0 0 #ef5350;
 }
-
-
-
 
