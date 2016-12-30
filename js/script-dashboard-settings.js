@@ -1,7 +1,7 @@
 /**
  * Created by Klavdij on 27/11/2016.
  */
-window.onload = function () {
+window.addEventListener("load", function () {
 
     var formContainer = document.getElementsByClassName('change-password')[0];
     var checkBox = document.getElementById('distance-checkbox');
@@ -62,4 +62,4 @@ window.onload = function () {
             warningMessage.className = 'visible';
         }
     }
-};
+});

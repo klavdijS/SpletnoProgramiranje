@@ -1,0 +1,145 @@
+<template name="login">
+    <div class="valign-wrapper" style="width:100%;height: 100%;position: absolute;">
+        <div class="valign" style="width: 100%">
+            <div class="container">
+                <div class="row">
+                    <div class="form_container z-depth-2">
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="title">
+                                    <h1>Moj</h1><img src="/img/logo_klavdij.svg" alt="MojSodnik logo" class="logo"><h1>Sodnik</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <form class="col s12" id="login">
+                                <div class="row">
+                                    <div class="input-field col s10 offset-s1">
+                                        <input id="username" name="username" type="text" class="validate">
+                                        <label for="username">Uporabniško ime ali email</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s10 offset-s1">
+                                        <input id="password" name="password" type="password" class="validate">
+                                        <label for="password">Geslo</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row">
+                            <div class="username_exists">Nepravilno uporabniško ime ali geslo.</div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 center-align">
+                                <a class="waves-effect waves-light btn-large center-align login-btn">Prijava</a>
+                            </div>
+                        </div>
+                        <div class="row padding-bottom">
+                            <div class="col s12 center-align">
+                                <label>Nimate uporabniškega računa? <a href="{{pathFor "registration"}}">Registracija</a></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="registration">
+    <div class="valign-wrapper" style="width:100%;height: 100%;position: absolute;">
+        <div class="valign" style="width: 100%">
+            <div class="container">
+                <div class="row">
+                    <div class="form_container z-depth-2">
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="title">
+                                    <h1>Moj</h1><img src="/img/logo_klavdij.svg" alt="MojSodnik logo" class="logo"><h1>Sodnik</h1>
+                                    <h2>Registracija uporabnika</h2>
+                                    <label>
+                                        Vpišite pravilno ime in priimek sicer vas aplikacija ne bo pravilno povezala z vašimi podatki in vam ne bo pravilno delovala.
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <form class="col s12" id="registration">
+                                <div class="row">
+                                    <div class="input-field col s5 offset-s1">
+                                        <input id="name" type="text" name="name" class="validate form-control">
+                                        <label for="name">Ime</label>
+                                    </div>
+                                    <div class="input-field col s5 offset+s1">
+                                        <input id="surname" type="text" name="surname" class="validate form-control">
+                                        <label for="surname">Priimek</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s5 offset-s1">
+                                        <input id="username" name="username" type="text" class="validate">
+                                        <label for="username">Uporabniško ime</label>
+                                    </div>
+                                    <div class="input-field col s5 offset+s1">
+                                        <input id="email" type="email" name="email" class="validate form-control">
+                                        <label for="email">Email</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s5 offset-s1">
+                                        <input id="password" type="password" name="password" class="validate form-control">
+                                        <label for="password">Geslo</label>
+                                    </div>
+                                    <div class="input-field col s5 offset+s1">
+                                        <input id="password_repeat" type="password" name="password_repeat" class="validate form-control">
+                                        <label for="password_repeat">Ponovno vpišite geslo</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="username_exists">Uporabniško ime že obstaja!</div>
+                                </div>
+                                <div class="row padding-top">
+                                    <div class="col s6 center-align">
+                                        <button class="waves-effect waves-light btn-large center-align register" type="submit" name="action">Registriraj</button>
+                                    </div>
+                                    <div class="col s6 center-align">
+                                        <a class="waves-effect waves-light btn-large center-align delete-data">Pobriši podatke</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row padding-bottom">
+                            <div class="col s12 center-align">
+                                <label>Že imate račun? <a href="{{pathFor "/"}}">Prijava</a></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="success_registration">
+    <div class="valign-wrapper" style="width:100%;height: 100%;position: absolute;">
+        <div class="valign" style="width: 100%">
+            <div class="container">
+                <div class="row">
+                    <div class="form_container z-depth-2 success_page">
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="title">
+                                    <h1>Moj</h1><img src="/img/logo_klavdij.svg" alt="MojSodnik logo" class="logo"><h1>Sodnik</h1>
+                                </div>
+                                <div class="success-description">
+                                    <p>Vaš račun je bil uspešno ustvarjen! Preusmerjeni boste na vpisno stran.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

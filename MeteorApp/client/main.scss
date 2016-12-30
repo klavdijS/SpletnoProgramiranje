@@ -1,0 +1,22 @@
+@import "{poetic:materialize-scss}/sass/components/_color.scss";
+
+
+$primary-color: color("light-blue", "base") !default;
+$primary-color-light: false !default;
+$primary-color-dark: false !default;
+@if not $primary-color-light {
+  $primary-color-light: lighten($primary-color, 15%);
+}
+@if not $primary-color-dark {
+  $primary-color-dark: darken($primary-color, 15%);
+}
+$secondary-color: color("light-blue", "base") !default;
+$success-color: color("green", "base") !default;
+$error-color: color("red", "base") !default;
+
+$link-color: color("light-blue", "darken-1") !default;
+
+@import "{poetic:materialize-scss}/sass/materialize.scss";
+
+
+@import '{}/imports/ui/styles/styles.scss';

@@ -23,20 +23,6 @@ html {
     width:100%;
 }
 
-@media only screen and (min-width:993px) {
-    .container{
-        width: 85%;
-        }
-}
-
-@media only screen and (min-width:601px) {
-    .container {
-        width: 85%;
-        background-color:white;
-    }
-
-}
-
 .form_container {
     overflow: scroll;
     text-align: center;

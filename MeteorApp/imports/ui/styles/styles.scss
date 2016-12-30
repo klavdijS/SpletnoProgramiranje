@@ -1,0 +1,138 @@
+html {
+  background-color: #FFB74D;
+}
+
+.form_container {
+  width: 70%;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  &.success_page {
+    height: 400px;
+  }
+  h1 {
+    text-align: center;
+    color: #212121;
+    font-weight: bold;
+  }
+  .title {
+    text-align: center;
+    padding-top: 10%;
+  }
+  .title > h1 {
+    display: inline-block;
+    font-size: 40pt;
+    margin: 0;
+  }
+
+  .title > h2 {
+    font-size: 22pt;
+  }
+  .padding-bottom {
+    padding-top: 5%;
+    padding-bottom: 15%;
+  }
+  .logo {
+    display: inline-block;
+    width: 5em;
+    vertical-align: middle;
+    margin: 0 5px 0 5px;
+  }
+  h2 {
+    text-align: center;
+  }
+
+  .padding-top {
+    padding-top: 3rem;
+  }
+
+  .input-field {
+    .invalid {
+      font-size: 0.8rem;
+      color: #FF4081;
+    }
+  }
+
+  .username_exists {
+    visibility: hidden;
+    text-align: center;
+    color: #FF4081;
+    font-size: 1.2rem;
+  }
+
+  .success-description {
+    text-align: center;
+    font-size: 1.5rem;
+    width: 50%;
+    margin: 0 auto;
+  }
+}
+
+@media #{$medium-and-down} {
+  .form_container {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+#logo-container {
+  height: 57px;
+}
+
+#front-page-logo {
+  display: inline-block;
+  height: 100%;
+  pointer-events: none;
+}
+
+#slide-out {
+  .logo {
+    text-align: center;
+    margin-top: 32px;
+    margin-bottom: 15px;
+  }
+  .subtitle {
+    font-size: 1.8rem;
+  }
+  .username {
+    display: block;
+    font-size: 1.2rem;
+    i {
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+  }
+  li {
+    color: #212121;
+    i {
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+    &.footer {
+      position: fixed;
+      bottom: 64px;
+      width:100%;
+      text-align: center;
+    }
+
+    .footer-description {
+      font-size: 12pt;
+      font-family: 'Roboto-Thin';
+    }
+  }
+  &.side-nav  {
+    width: 300px;
+    .menu_item {
+      a:hover {
+        background-color: #e0e0e0;
+      }
+    }
+  }
+  &.side-nav.fixed a {
+    font-size: 1.2rem;
+    color: #212121;
+  }
+}
+
+.top-nav {
+  height: 122px;
+}

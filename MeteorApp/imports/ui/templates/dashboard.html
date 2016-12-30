@@ -1,0 +1,46 @@
+<template name="dashboard">
+    <header>
+       {{>dashboard_header_submenu}}
+    </header>
+    <main>
+    </main>
+    <footer>
+    </footer>
+</template>
+
+<template name="dashboard_header_submenu">
+    <nav class="top-nav">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a class="page-title">Test title</a>
+            </div>
+        </div>
+    </nav>
+    <ul id="slide-out" class="side-nav fixed z-depth-3">
+        <li class="logo">
+            <a id="logo-container" class="brand-logo" href="{{pathFor "/user/dashboard"}}">
+            <object id="front-page-logo" data="/img/logo_klavdij.svg" type="image/svg+xml"></object>
+            </a>
+            <span class="subtitle">MojSodnik</span>
+            <span class="username"><i class="material-icons">account_circle</i>Klavdij Starman</span>
+        </li>
+        <li class="menu_item">
+            <a href="#!" class="waves-effect active">
+            <i class="material-icons">home</i>Domov</a>
+        </li>
+        <li class="menu_item">
+            <a href="#!" class="waves-effect active">
+                <i class="material-icons">settings</i>Nastavitve
+            </a>
+        </li>
+        <li class="menu_item">
+            <a href="#!" class="waves-effect active">
+                <i class="material-icons">exit_to_app</i>Odjava
+            </a>
+        </li>
+        <li class="footer">
+            <span class="footer-description">Klavdij Starman &copy; 2016</span>
+        </li>
+    </ul>
+    <a href="#" data-activates="slide-out" class="button-collapse hide-on-large-only"><i class="material-icons">menu</i></a>
+</template>
