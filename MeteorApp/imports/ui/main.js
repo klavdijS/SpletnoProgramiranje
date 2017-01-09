@@ -4,6 +4,13 @@
 import './templates/mainBody.html';
 import './templates/loginPage.html';
 import './templates/dashboard.html';
+import './templates/settings.html';
+import {Constants} from '../../lib/constants.js';
+import {Matches} from '../../imports/api/matches/matches.js';
+import {MatchesData} from '../../imports/api/matchesData/matchesData.js';
+import {Template} from 'meteor/templating';
+import {Meteor} from 'meteor/meteor';
+import {Tracker} from 'meteor/tracker';
 
 Template.registration.onRendered(() => {
     $("#registration").validate({
@@ -76,25 +83,25 @@ Template.registration.onRendered(() => {
                     username: $('input#username').val()
                 }
             };
-            Meteor.call('usernameExists', user, (err,res) => {
+            Meteor.call('usernameExists', user, (err, res) => {
                 if (err) {
                     console.log(err)
                 } else {
                     if (res.username === true && res.email === true) {
-                        $('.username_exists').css('visibility','visible').text('Uporabniško ime že obstaja! Račun s tem emailom že obstaja!');
+                        $('.username_exists').css('visibility', 'visible').text('Uporabniško ime že obstaja! Račun s tem emailom že obstaja!');
                     } else if (res.username === true && res.email === false) {
-                        $('.username_exists').css('visibility','visible').text('Uporabniško ime že obstaja!');
+                        $('.username_exists').css('visibility', 'visible').text('Uporabniško ime že obstaja!');
                     } else if (res.username === false && res.email === true) {
-                        $('.username_exists').css('visibility','visible').text('Račun s tem emailom že obstaja!');
+                        $('.username_exists').css('visibility', 'visible').text('Račun s tem emailom že obstaja!');
                     } else if (res.username === false && res.email === false) {
-                        $('.username_exists').css('visibility','hidden');
-                        Meteor.call('userInsert',user,(err,res) => {
-                           if (err) {
-                               console.log("User not created. Error: ",err);
-                           }  else {
-                               console.log("User created. Response: ",res);
-                               FlowRouter.go('success');
-                           }
+                        $('.username_exists').css('visibility', 'hidden');
+                        Meteor.call('userInsert', user, (err, res) => {
+                            if (err) {
+                                console.log("User not created. Error: ", err);
+                            } else {
+                                console.log("User created. Response: ", res);
+                                FlowRouter.go('success');
+                            }
                         });
                     }
                 }
@@ -113,11 +120,11 @@ Template.registration.events({
     }
 });
 
-Template.login.onRendered(()=>{
+Template.login.onRendered(() => {
     $('#login').validate({
         rules: {
             username: {
-                required:true
+                required: true
             },
             password: {
                 required: true
@@ -146,11 +153,11 @@ Template.login.onRendered(()=>{
                 email: $('input#username').val(),
                 password: $('input#password').val()
             };
-            Meteor.loginWithPassword(user.email,user.password,function(err){
+            Meteor.loginWithPassword(user.email, user.password, function (err) {
                 if (err) {
-                    $('.username_exists').css('visibility','visible');
+                    $('.username_exists').css('visibility', 'visible');
                 } else {
-                    $('.username_exists').css('visibility','hidden');
+                    $('.username_exists').css('visibility', 'hidden');
                     FlowRouter.go('/user/dashboard');
                 }
             });
@@ -163,56 +170,123 @@ Template.login.events({
         event.preventDefault();
     },
 
-    'click .login-btn': (event,template) => {
+    'click .login-btn': (event, template) => {
         template.$('form:first').submit();
     }
 });
-/*
- Template.content.events({
- 'submit form': function (event) {
- event.preventDefault();
- var user = {
- email : $('[name=email]').val(),
- password : $('[name=password]').val()
- };
- Meteor.call('userInsert',user,function(err,res){
- if (err) {
- console.log(err);
- } else {
- FlowRouter.go('home');
- console.log("No error, logged in bič");
- }
- });
- }
- });
 
- Template.home_content.events({
- 'click .logout': function(event,template) {
- event.preventDefault();
- Meteor.logout();
- FlowRouter.go('/');
- }
- });
+Template.dashboard_main_content.onCreated(() => {
+    Tracker.autorun(() => {
+        if (Meteor.user()) {
+            let date = new Date();
+            Meteor.subscribe('matches', Meteor.user());
+            Session.set('selected_year', date.getFullYear());
+            Session.set('selected_month', date.getMonth());
+        }
+    });
+});
 
- Template.home_content.helpers({
- currentUser: function() {
- return Meteor.user();
- }
- });
+Template.dashboard_header_submenu.onRendered(() => {
+    let tmpl = Template.instance();
 
- Template.content_login.events({
- 'submit form': function (event) {
- event.preventDefault();
- var email = $('[name=email]').val();
- var password = $('[name=password]').val();
- console.log("Logging in");
- Meteor.loginWithPassword(email,password,function (err) {
- if (err) {
- console.log(err)
- } else {
- console.log("Logged in");
- FlowRouter.go('home');
- }
- });
- }
- });*/
+    tmpl.$('select').material_select();
+});
+
+Template.slide_out_menu.onRendered(() => {
+    let tmpl = Template.instance();
+
+    tmpl.$('.button-collapse').sideNav({
+        menuWidth: 300,
+        draggable: true,
+        closeOnClick:true
+    });
+});
+
+Template.slide_out_menu.helpers({
+    nameAndSurname: () => {
+        let user = Meteor.user();
+        if (user) {
+            return user.profile.name + " " + user.profile.surname;
+        }
+    },
+    copyright: () => {
+        return Constants.COPYRIGHT;
+    }
+});
+
+Template.slide_out_menu.events({
+    'click .logout': (event, template) => {
+        Meteor.logout((err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                FlowRouter.go('/');
+            }
+        });
+    }
+});
+
+Template.dashboard_header_submenu.helpers({
+    checkMonth: (month) => {
+        return new Date().getMonth() === month;
+    }
+});
+
+Template.dashboard_header_submenu.events({
+    "change #season": (event) => {
+        let newValue = parseInt($(event.target).val());
+        let oldValue = Session.get('selected_year');
+        if (newValue != oldValue) {
+            Session.set('selected_year', newValue);
+        }
+    },
+    "change #month": (event) => {
+        let newValue = parseInt($(event.target).val());
+        let oldValue = Session.get('selected_month');
+        if (newValue != oldValue) {
+            Session.set('selected_month', newValue);
+        }
+    }
+});
+
+Template.dashboard_main_content.helpers({
+    matches: () => {
+        let year = Session.get('selected_year');
+        let month = Session.get('selected_month');
+        if (!(_.isUndefined(year)) && !(_.isUndefined(month))) {
+            let nextMonth = month;
+            let nextYear = year;
+            if (month === 11) {
+                nextMonth = 0;
+                nextYear += 1;
+            } else {
+                nextMonth += 1;
+            }
+            let lowerTs = new Date(year, month, 1, 0).getTime() / 1000;
+            let higherTs = new Date(nextYear, nextMonth, 1, 0).getTime() / 1000;
+            let matches = Matches.find({
+                timestamp: {
+                    $gte: lowerTs,
+                    $lt: higherTs
+                }
+            }).fetch();
+            Session.set('current_matches', matches);
+            return matches;
+        }
+    }
+});
+
+Template.dashboard_footer.helpers({
+    revenue: () => {
+        let matches = Session.get('current_matches');
+        let revenue = 0;
+        _.each(matches, (match, index) => {
+            revenue += match.match_price;
+        });
+        Session.set('revenue', revenue);
+        return revenue;
+    },
+    monthly: () => {
+        return Session.get('revenue') + 20;
+    }
+});

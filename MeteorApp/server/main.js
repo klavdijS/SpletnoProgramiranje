@@ -1,1 +1,1 @@
-import '/imports/api-users/methods.js';
+import '/imports/startup/server';

@@ -1,9 +1,8 @@
 <template name="mainBody">
-    <header>
-        {{> Template.dynamic template=mainMenu}}
+    <header class="dashboard_page">
         {{> Template.dynamic template=subMenu}}
     </header>
-    <main>
-        {{> Template.dynamic template=content}}
-    </main>
+    {{> Template.dynamic template=content}}
+
+    {{> Template.dynamic template=footer}}
 </template>

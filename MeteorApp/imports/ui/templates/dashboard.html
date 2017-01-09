@@ -1,46 +1,99 @@
-<template name="dashboard">
-    <header>
-       {{>dashboard_header_submenu}}
-    </header>
-    <main>
-    </main>
-    <footer>
-    </footer>
-</template>
-
 <template name="dashboard_header_submenu">
     <nav class="top-nav">
         <div class="container">
             <div class="nav-wrapper">
-                <a class="page-title">Test title</a>
+                <div class="row">
+                    <div class="col s6">
+                        <div class="col s6 offset-s6">
+                            <div class="select-container">
+                                <select name="season" id="season" class="selector">
+                                    <option value="" disabled>Izberite leto</option>
+                                    <option value="2017" selected>2017</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2014">2014</option>
+                                    <option value="2013">2013</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        <div class="col s6 offset-s3">
+                            <div class="select-container">
+                                <select name="month" id="month" class="selector">
+                                    <option value="" disabled>Izberite mesec</option>
+                                    <option value="0" selected="{{#if checkMonth 0}}selected{{/if}}">Januar</option>
+                                    <option value="1" selected="{{#if checkMonth 1}}selected{{/if}}">Februar</option>
+                                    <option value="2" selected="{{#if checkMonth 2}}selected{{/if}}">Marec</option>
+                                    <option value="3" selected="{{#if checkMonth 3}}selected{{/if}}">April</option>
+                                    <option value="4" selected="{{#if checkMonth 4}}selected{{/if}}">Maj</option>
+                                    <option value="5" selected="{{#if checkMonth 5}}selected{{/if}}">Junij</option>
+                                    <option value="6" selected="{{#if checkMonth 6}}selected{{/if}}">Julij</option>
+                                    <option value="7" selected="{{#if checkMonth 7}}selected{{/if}}">Avgust</option>
+                                    <option value="8" selected="{{#if checkMonth 8}}selected{{/if}}">September</option>
+                                    <option value="9" selected="{{#if checkMonth 9}}selected{{/if}}">Oktober</option>
+                                    <option value="10" selected="{{#if checkMonth 10}}selected{{/if}}">November</option>
+                                    <option value="11" selected="{{#if checkMonth 11}}selected{{/if}}">December</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
-    <ul id="slide-out" class="side-nav fixed z-depth-3">
-        <li class="logo">
-            <a id="logo-container" class="brand-logo" href="{{pathFor "/user/dashboard"}}">
-            <object id="front-page-logo" data="/img/logo_klavdij.svg" type="image/svg+xml"></object>
-            </a>
-            <span class="subtitle">MojSodnik</span>
-            <span class="username"><i class="material-icons">account_circle</i>Klavdij Starman</span>
-        </li>
-        <li class="menu_item">
-            <a href="#!" class="waves-effect active">
-            <i class="material-icons">home</i>Domov</a>
-        </li>
-        <li class="menu_item">
-            <a href="#!" class="waves-effect active">
-                <i class="material-icons">settings</i>Nastavitve
-            </a>
-        </li>
-        <li class="menu_item">
-            <a href="#!" class="waves-effect active">
-                <i class="material-icons">exit_to_app</i>Odjava
-            </a>
-        </li>
-        <li class="footer">
-            <span class="footer-description">Klavdij Starman &copy; 2016</span>
-        </li>
-    </ul>
-    <a href="#" data-activates="slide-out" class="button-collapse hide-on-large-only"><i class="material-icons">menu</i></a>
+    {{> slide_out_menu}}
+</template>
+
+<template name="dashboard_main_content">
+    <main class="dashboard_page">
+        <div class="table-content {{#unless matches}}center-middle{{/unless}}">
+            {{#if matches}}
+                <table class="responsive-table centered">
+                    <thead>
+                    <tr>
+                        <th data-field="game-id">Tekma</th>
+                        <th data-field="first-referee">1. sodnik</th>
+                        <th data-field="second-referee">2. sodnik</th>
+                        <th data-field="third-referee">3. sodnik</th>
+                        <th data-field="commisioner">Tehnični komisar</th>
+                        <th data-field="pay">Taksa</th>
+                        <th data-field="about-game">Podatki o tekmi</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each matches}}
+                        <tr>
+                            <td><a href="{{this.match_link}}" target="_blank">{{this.league}}<br> {{this.home_team}} - {{this.guest_team}}</a></td>
+                            <td>{{this.referees.[0]}}</td>
+                            <td>{{this.referees.[1]}}</td>
+                            <td>{{this.referees.[2]}}</td>
+                            <td>{{this.commisioner}}</td>
+                            <td>{{this.match_price}}</td>
+                            <td class="edit-td">Uredi<i class="material-icons edit-btn">mode_edit</i></td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            {{else}}
+                <h1>Ni tekem za izbrani mesec</h1>
+            {{/if}}
+        </div>
+    </main>
+</template>
+
+<template name="dashboard_footer">
+    <footer class="dashboard_page fixed">
+        <div class="container">
+            <div class="row">
+                <div class="col s8 offset-s4">
+                    <div class="summary">
+                        <span class="takse">Skupaj taks:<span class="cash">{{revenue}} EUR</span></span>
+                        <span class="commute">Kilometrine in dnevnice:<span class="cash">60 EUR</span></span>
+                        <span class="monthly">Skupaj za mesec oktober: <span class="cash">{{monthly}} EUR</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </template>

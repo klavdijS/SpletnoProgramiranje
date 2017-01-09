@@ -1,7 +1,7 @@
 @import "{poetic:materialize-scss}/sass/components/_color.scss";
 
 
-$primary-color: color("light-blue", "base") !default;
+$primary-color: color("orange", "lighten-2") !default;
 $primary-color-light: false !default;
 $primary-color-dark: false !default;
 @if not $primary-color-light {
@@ -10,7 +10,7 @@ $primary-color-dark: false !default;
 @if not $primary-color-dark {
   $primary-color-dark: darken($primary-color, 15%);
 }
-$secondary-color: color("light-blue", "base") !default;
+$secondary-color: color("teal", "lighten-2") !default;
 $success-color: color("green", "base") !default;
 $error-color: color("red", "base") !default;
 

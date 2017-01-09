@@ -1,0 +1,93 @@
+<template name="settings">
+    <main class="dashboard_page">
+        <div class="valign-wrapper settings-container">
+            <div class="valign">
+                <div class="row">
+                    <div class="col s8 offset-s2">
+                        <div class="settings z-depth-1">
+                            <div class="row">
+                                <form id="settings" class="col s12">
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="password" type="password" name="password"
+                                                   class="validate form-control">
+                                            <label for="password">Geslo</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input id="password_repeat" type="password" name="password_repeat"
+                                                   class="validate form-control">
+                                            <label for="password_repeat">Ponovno vpišite geslo</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="file-field input-field">
+                                            <div class="btn">
+                                                <span>File</span>
+                                                <input type="file">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text" name="file_input">
+                                                <label for="file_input">Naloži sliko profila</label>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            <input type="checkbox" id="distance"/>
+                                            <label for="distance">Obračunavanje kilometrine</label>
+                                        </p>
+                                    </div>
+                                    <div class="row padding-top">
+                                        <div class="col s12 center-align">
+                                            <button class="waves-effect waves-light btn-large center-align register" type="submit" name="action">Shrani</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</template>
+
+<template name="settings_header_submenu">
+    <nav class="top-nav">
+        <div class="container">
+            <div class="nav-wrapper no-padding">
+                <a class="page-title">Nastavitve</a>
+            </div>
+        </div>
+    </nav>
+    {{> slide_out_menu}}
+</template>
+
+<template name="slide_out_menu">
+    <ul id="slide-out" class="side-nav fixed z-depth-3">
+        <li class="logo">
+            <div id="logo-container" class="brand-logo" href="{{pathFor "/user/dashboard"}}">
+                <object id="front-page-logo" data="/img/logo_klavdij.svg" type="image/svg+xml"></object>
+            </div>
+            <span class="subtitle">MojSodnik</span>
+            <span class="username"><i class="material-icons">account_circle</i>{{nameAndSurname}}</span>
+        </li>
+        <li class="menu_item">
+            <a href="{{pathFor "/user/dashboard"}}" class="waves-effect active">
+                <i class="material-icons">home</i>Domov</a>
+        </li>
+        <li class="menu_item">
+            <a href="{{pathFor "/user/settings"}}" class="waves-effect active">
+                <i class="material-icons">settings</i>Nastavitve
+            </a>
+        </li>
+        <li class="menu_item">
+            <a href="#!" class="waves-effect active logout">
+                <i class="material-icons">exit_to_app</i>Odjava
+            </a>
+        </li>
+        <li class="footer">
+            <span class="footer-description">{{copyright}}</span>
+        </li>
+    </ul>
+    <a href="#" data-activates="slide-out" class="button-collapse hide-on-large-only hamburger-menu"><i
+            class="material-icons">menu</i></a>
+</template>
