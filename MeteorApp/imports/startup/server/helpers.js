@@ -2,6 +2,7 @@
  * Created by Klavdij on 08/01/2017.
  */
 import {Matches} from '../../api/matches/matches.js';
+import {MatchesData} from '../../api/matchesData/matchesData.js';
 
 export let Helper = {
 
@@ -17,5 +18,16 @@ export let Helper = {
                 Matches.insert(match);
             }
         })
+    },
+    updateMatchData: (match) => {
+        MatchesData.upsert({userId:match.user,matchId:match.matchId},
+            {$set:
+                {userId: match.user,
+                    matchId: match.matchId,
+                    comment: match.comment,
+                    mileage: match.mileage,
+                    dailyAmount: match.dailyAmount
+                }
+            });
     }
 };

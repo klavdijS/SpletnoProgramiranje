@@ -5,6 +5,7 @@ import './templates/mainBody.html';
 import './templates/loginPage.html';
 import './templates/dashboard.html';
 import './templates/settings.html';
+import './templates/modal.html';
 import {Constants} from '../../lib/constants.js';
 import {Matches} from '../../imports/api/matches/matches.js';
 import {MatchesData} from '../../imports/api/matchesData/matchesData.js';
@@ -80,9 +81,14 @@ Template.registration.onRendered(() => {
                 profile: {
                     name: $('input#name').val().replace(/\b\w/g, l => l.toUpperCase()),
                     surname: $('input#surname').val().replace(/\b\w/g, l => l.toUpperCase()),
-                    username: $('input#username').val()
+                    username: $('input#username').val(),
+                    profile_pic: null,
+                    distance: true
                 }
             };
+
+            console.log(user);
+
             Meteor.call('usernameExists', user, (err, res) => {
                 if (err) {
                     console.log(err)
@@ -100,7 +106,7 @@ Template.registration.onRendered(() => {
                                 console.log("User not created. Error: ", err);
                             } else {
                                 console.log("User created. Response: ", res);
-                                FlowRouter.go('success');
+                                FlowRouter.go('/success');
                             }
                         });
                     }
@@ -153,12 +159,20 @@ Template.login.onRendered(() => {
                 email: $('input#username').val(),
                 password: $('input#password').val()
             };
+            $('#login-loader').removeClass('hidden');
             Meteor.loginWithPassword(user.email, user.password, function (err) {
                 if (err) {
                     $('.username_exists').css('visibility', 'visible');
                 } else {
-                    $('.username_exists').css('visibility', 'hidden');
-                    FlowRouter.go('/user/dashboard');
+                    Meteor.call('updateMatches',Meteor.user(),(err,res) => {
+                        if (err) {
+                            console.log("Error updating matches");
+                        } else {
+                            $('#login-loader').addClass('hidden');
+                            $('.username_exists').css('visibility', 'hidden');
+                            FlowRouter.go('/user/dashboard');
+                        }
+                    })
                 }
             });
         }
@@ -180,6 +194,7 @@ Template.dashboard_main_content.onCreated(() => {
         if (Meteor.user()) {
             let date = new Date();
             Meteor.subscribe('matches', Meteor.user());
+            Meteor.subscribe('matches_data', Meteor.userId());
             Session.set('selected_year', date.getFullYear());
             Session.set('selected_month', date.getMonth());
         }
@@ -197,8 +212,7 @@ Template.slide_out_menu.onRendered(() => {
 
     tmpl.$('.button-collapse').sideNav({
         menuWidth: 300,
-        draggable: true,
-        closeOnClick:true
+        draggable: true
     });
 });
 
@@ -280,13 +294,156 @@ Template.dashboard_footer.helpers({
     revenue: () => {
         let matches = Session.get('current_matches');
         let revenue = 0;
+        let mileageDaily = 0;
         _.each(matches, (match, index) => {
             revenue += match.match_price;
+            let matchData = MatchesData.findOne({matchId:match._id});
+            if (matchData) {
+                mileageDaily += (matchData.mileage + matchData.dailyAmount)
+            }
         });
+        Session.set('mileageDaily', mileageDaily);
         Session.set('revenue', revenue);
         return revenue;
     },
     monthly: () => {
-        return Session.get('revenue') + 20;
+        return parseInt(Session.get('revenue') + Session.get('mileageDaily'));
+    },
+    mileageDaily: () => {
+        return parseInt(Session.get('mileageDaily'));
     }
+});
+
+Template.settings_template.onRendered(() => {
+    $("#settings").validate({
+        rules: {
+            password: {
+                minlength: 5
+            },
+            password_repeat: {
+                equalTo: "#password"
+            }
+        },
+        messages: {
+            password: {
+                minlength: "Geslo mora biti dolgo vsaj 5 znakov"
+            },
+            password_repeat: {
+                equalTo: "Gesli se ne ujemata!"
+            }
+
+        },
+        errorElement: 'div',
+        errorClass: 'invalid',
+        errorPlacement: (error, element) => {
+            var placement = $(element).data('error');
+            if (placement) {
+                $(placement).append(error);
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        submitHandler: (form) => {
+            let user = {
+                id: Meteor.userId(),
+                password: $('input#password').val(),
+                distance: $('input#distance').is(":checked")
+            };
+
+            Meteor.call('changeUserPassword', user, (err, res) => {
+                if (err) {
+                    console.log("Failed to change password");
+                } else {
+                    console.log("Successfully changed password.Redirecting");
+                    FlowRouter.go('/user/success');
+                }
+            });
+        }
+    });
+});
+
+Template.settings_template.events({
+    'submit form': (event) => {
+        event.preventDefault();
+    },
+
+    'click .save-changes': (event, template) => {
+        template.$('form:first').submit();
+    }
+});
+
+Template.matches_row.events({
+    "click .edit-match": (event, template) => {
+        let modal = $("#edit_match_modal");
+        let obj = $(event.currentTarget).data();
+
+        Session.set("active_matchData", obj);
+
+        modal.openModal();
+    }
+});
+
+Template.matches_row.onRendered(() => {
+    $('.tooltipped').tooltip({delay: 50});
+
+    this.$('.edit-match').leanModal({
+        complete: function () {
+            Session.set("active_matchData", null);
+        }
+    });
+});
+
+Template.edit_match_modal.helpers({
+    matchData: () => {
+        let resp = Session.get('active_matchData');
+        if (resp) {
+            delete resp.position;
+            delete resp.tooltip;
+            delete resp.tooltipId;
+            let editedMatchData = MatchesData.findOne({matchId:resp.id});
+            return _.extend(resp,{editedData:editedMatchData});
+        }
+    },
+
+    dailyValue: (amount,matchAmount) => {
+        return amount === matchAmount;
+    }
+});
+
+Template.edit_match_modal.events({
+    "submit form": (event) => {
+        event.preventDefault();
+    },
+    "click .save-match-data": (event, template) => {
+        template.$('form:first').submit();
+    }
+});
+
+Template.edit_match_modal.onRendered(() => {
+
+    const self = this;
+
+    this.$("form#match-data").validate({
+        submitHandler: (event) => {
+
+            let match = {
+                user: Meteor.userId(),
+                matchId: Session.get('active_matchData').id,
+                comment: $('textarea#match_comment').val(),
+                mileage: parseInt($('input#mileage').val()),
+                dailyAmount: parseFloat($("input[name='group1']:checked").val())
+            };
+
+            Meteor.call("edit_matchData", match, function (err, res) {
+                if (err) {
+                    console.log("Error updating match");
+                } else {
+                    console.log(res);
+                    self.$("#edit_match_modal").closeModal();
+                    Session.set('active_matchData',null);
+                    console.log("Successfully updated match");
+                }
+            });
+        }
+    });
 });

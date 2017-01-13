@@ -1,10 +1,13 @@
 <template name="dashboard_header_submenu">
     <nav class="top-nav">
-        <div class="container">
-            <div class="nav-wrapper">
-                <div class="row">
-                    <div class="col s6">
-                        <div class="col s6 offset-s6">
+        <div class="nav-wrapper center-container">
+            <div class="container">
+                <div class="row no-margin-row">
+                    <div class="col s5 season-container z-depth-1">
+                        <div class="col s6">
+                            <a class="page-title no-lineheight">Leto</a>
+                        </div>
+                        <div class="col s6">
                             <div class="select-container">
                                 <select name="season" id="season" class="selector">
                                     <option value="" disabled>Izberite leto</option>
@@ -17,8 +20,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col s6">
-                        <div class="col s6 offset-s3">
+                    <div class="col s5 season-container z-depth-1 offset-s2">
+                        <div class="col s6">
+                            <a class="page-title no-lineheight">Mesec</a>
+                        </div>
+                        <div class="col s6">
                             <div class="select-container">
                                 <select name="month" id="month" class="selector">
                                     <option value="" disabled>Izberite mesec</option>
@@ -49,7 +55,7 @@
     <main class="dashboard_page">
         <div class="table-content {{#unless matches}}center-middle{{/unless}}">
             {{#if matches}}
-                <table class="responsive-table centered">
+                <table class="responsive-table centered bordered">
                     <thead>
                     <tr>
                         <th data-field="game-id">Tekma</th>
@@ -63,15 +69,7 @@
                     </thead>
                     <tbody>
                     {{#each matches}}
-                        <tr>
-                            <td><a href="{{this.match_link}}" target="_blank">{{this.league}}<br> {{this.home_team}} - {{this.guest_team}}</a></td>
-                            <td>{{this.referees.[0]}}</td>
-                            <td>{{this.referees.[1]}}</td>
-                            <td>{{this.referees.[2]}}</td>
-                            <td>{{this.commisioner}}</td>
-                            <td>{{this.match_price}}</td>
-                            <td class="edit-td">Uredi<i class="material-icons edit-btn">mode_edit</i></td>
-                        </tr>
+                        {{> matches_row}}
                     {{/each}}
                     </tbody>
                 </table>
@@ -79,21 +77,38 @@
                 <h1>Ni tekem za izbrani mesec</h1>
             {{/if}}
         </div>
+        {{> edit_match_modal}}
     </main>
 </template>
 
 <template name="dashboard_footer">
     <footer class="dashboard_page fixed">
-        <div class="container">
+        <div class="container-footer">
             <div class="row">
                 <div class="col s8 offset-s4">
-                    <div class="summary">
+                    <div class="summary z-depth-1">
                         <span class="takse">Skupaj taks:<span class="cash">{{revenue}} EUR</span></span>
-                        <span class="commute">Kilometrine in dnevnice:<span class="cash">60 EUR</span></span>
+                        <span class="commute">Kilometrine in dnevnice:<span class="cash">{{mileageDaily}} EUR</span></span>
                         <span class="monthly">Skupaj za mesec oktober: <span class="cash">{{monthly}} EUR</span></span>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
+</template>
+
+<template name="matches_row">
+    <tr>
+        <td><a href="{{this.match_link}}" target="_blank">{{this.league}}<br> {{this.home_team}}
+            - {{this.guest_team}}</a></td>
+        <td>{{this.referees.[0]}}</td>
+        <td>{{this.referees.[1]}}</td>
+        <td>{{this.referees.[2]}}</td>
+        <td>{{this.commisioner}}</td>
+        <td>{{this.match_price}}</td>
+        <td><a href="#edit_match_modal" class="btn-floating btn-small waves-effect waves-light tooltipped edit-match" data-position="bottom" data-tooltip="Uredi tekmo" data-id="{{this._id}}" data-hometeam="{{this.home_team}}"
+               data-awayteam="{{this.guest_team}}" data-firstreferee="{{this.referees.[0]}}" data-secondreferee="{{this.referees.[1]}}"
+        data-thirdreferee="{{this.referees.[2]}}" data-commisioner="{{this.commisioner}}" data-league="{{this.league}}"><i class="material-icons">mode_edit</i></a>
+        </td>
+    </tr>
 </template>

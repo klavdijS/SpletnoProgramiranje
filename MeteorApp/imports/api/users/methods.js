@@ -10,8 +10,7 @@ import { HTTP } from 'meteor/http';
 var apiCall = function (apiUrl, callback) {
     // try…catch allows you to handle errors
     try {
-        console.log(apiUrl);
-        var response = HTTP.get(apiUrl).data;
+        var response = HTTP.get(encodeURI(apiUrl)).data;
         // A successful API call returns no error
         // but the contents from the JSON response
         callback(null, response);
@@ -52,10 +51,22 @@ Meteor.methods({
 
             let requestUrl = Constants.API_URL_GET_MATCHES_REFEREE + Helper.prepareUrl(user.profile.name, user.profile.surname);
 
+            console.log(requestUrl);
+
             let response = Meteor.wrapAsync(apiCall)(requestUrl);
 
             Helper.insertMatchesIntoDB(response);
         }
+    },
+
+    updateMatches: function (user) {
+        this.unblock();
+
+        let requestUrl = Constants.API_URL_GET_MATCHES_REFEREE + Helper.prepareUrl(user.profile.name, user.profile.surname);
+
+        let response = Meteor.wrapAsync(apiCall)(requestUrl);
+
+        Helper.insertMatchesIntoDB(response);
     },
 
     usernameExists: function (user) {
@@ -65,5 +76,19 @@ Meteor.methods({
             username: checkUser.length > 0,
             email: !_.isUndefined(checkEmail)
         };
+    },
+
+
+    changeUserPassword: function (user) {
+        if (!_.isEmpty(user.password) && !_.isUndefined(user.password)) {
+            Accounts.setPassword(user.id,user.password,{logout:false});
+            Meteor.users.update(user.id,{$set:{"profile.distance":user.distance}});
+        } else {
+            Meteor.users.update(user.id,{$set:{"profile.distance":user.distance}});
+        }
+    },
+
+    edit_matchData: function (match) {
+        Helper.updateMatchData(match);
     }
 });

@@ -5,6 +5,6 @@
 import { Meteor } from 'meteor/meteor';
 import { MatchesData } from '../matchesData.js';
 
-Meteor.publish('matches_data', function(){
-    return MatchesData.find({});
+Meteor.publish('matches_data', function(userId){
+    return MatchesData.find({userId:userId});
 });

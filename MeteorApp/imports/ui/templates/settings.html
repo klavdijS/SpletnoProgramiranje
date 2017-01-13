@@ -1,4 +1,4 @@
-<template name="settings">
+<template name="settings_template">
     <main class="dashboard_page">
         <div class="valign-wrapper settings-container">
             <div class="valign">
@@ -11,12 +11,12 @@
                                         <div class="input-field col s12">
                                             <input id="password" type="password" name="password"
                                                    class="validate form-control">
-                                            <label for="password">Geslo</label>
+                                            <label for="password">Vpišite novo geslo</label>
                                         </div>
                                         <div class="input-field col s12">
                                             <input id="password_repeat" type="password" name="password_repeat"
                                                    class="validate form-control">
-                                            <label for="password_repeat">Ponovno vpišite geslo</label>
+                                            <label for="password_repeat">Ponovno vpišite novo geslo</label>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -37,10 +37,30 @@
                                     </div>
                                     <div class="row padding-top">
                                         <div class="col s12 center-align">
-                                            <button class="waves-effect waves-light btn-large center-align register" type="submit" name="action">Shrani</button>
+                                            <button class="waves-effect waves-light btn-large center-align save-changes" type="submit" name="action">Shrani</button>
                                         </div>
                                     </div>
                                 </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</template>
+
+<template name="settings_success">
+    <main class="dashboard_page">
+        <div class="valign-wrapper settings-container">
+            <div class="valign">
+                <div class="row">
+                    <div class="col s8 offset-s2">
+                        <div class="settings z-depth-1 success-message">
+                            <div class="row">
+                                <div class="col s12">
+                                    <h3>Podatki so bili uspešno posodobljeni.</h3>
+                                </div>
                             </div>
                         </div>
                     </div>

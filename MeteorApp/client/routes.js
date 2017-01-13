@@ -81,8 +81,22 @@ signedIn.route('/settings', {
     action: (params,queryParams) => {
         BlazeLayout.render('mainBody', {
             subMenu: "settings_header_submenu",
-            content: "settings",
+            content: "settings_template",
             footer: null
         })
+    }
+});
+
+signedIn.route('/success',{
+   name: "success",
+    action: (params,queryParams) => {
+        BlazeLayout.render('mainBody', {
+            subMenu: "settings_header_submenu",
+            content: "settings_success",
+            footer: null
+        });
+        setTimeout(() => {
+            FlowRouter.go('/user/dashboard');
+        }, 2000);
     }
 });
