@@ -1,0 +1,81 @@
+<template name="edit_match_modal">
+    <div id="edit_match_modal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            {{#if matchData}}
+                <div class="row">
+                    <div class="col s12">
+                        <h5>{{matchData.league}}</h5>
+                        <h5>{{matchData.hometeam}} - {{matchData.awayteam}}</h5>
+                        <label>Sodniki</label>
+                        <div class="referees">{{matchData.firstreferee}}, {{matchData.secondreferee}}
+                            {{#if matchData.thirdreferee}}
+                                , {{matchData.thirdreferee}}
+                            {{/if}}
+                        </div>
+                        {{#if matchData.commisioner}}
+                            <label>Komisar</label>
+                            <div class="commisioner">
+                                {{matchData.commisioner}}
+                            </div>
+                        {{/if}}
+                    </div>
+                </div>
+            {{/if}}
+            <div class="row">
+                <form id="match-data" class="col s12">
+                    {{#if matchData}}
+                        <div class="input-field col s12">
+                            <textarea id="match_comment" class="materialize-textarea" value="{{matchData.editedData.comment}}"></textarea>
+                            <label for="match_comment" class="{{#if matchData.editedData.comment}}active{{/if}}">Vpiši komentarje ali opombe iz tekme</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="mileage" type="number" class="validate" name="mileage" value="{{matchData.editedData.mileage}}">
+                            <label for="mileage" class="{{#if matchData.editedData.mileage}}active{{/if}}">Vnesi kilometrino</label>
+                        </div>
+                        <div class="input-field col s12 no-margin-top">
+                            <label>Dnevnica</label>
+                            <div class="radio-buttons-container">
+                                <p>
+                                    {{#if (dailyValue 0 matchData.editedData.dailyAmount)}}
+                                        <input class="with-gap" name="group1" type="radio" id="no-daily" checked value="0"/>
+                                    {{else}}
+                                        <input class="with-gap" name="group1" type="radio" id="no-daily" value="0"/>
+                                    {{/if}}
+                                    <label for="no-daily">Brez</label>
+                                </p>
+                                <p>
+                                    {{#if (dailyValue 7.45 matchData.editedData.dailyAmount)}}
+                                        <input class="with-gap" name="group1" type="radio" id="small-daily" checked value="7.45"/>
+                                    {{else}}
+                                        <input class="with-gap" name="group1" type="radio" id="small-daily" value="7.45"/>
+                                    {{/if}}
+                                    <label for="small-daily">Mala</label>
+                                </p>
+                                <p>
+                                    {{#if (dailyValue 10.68 matchData.editedData.dailyAmount)}}
+                                        <input class="with-gap" name="group1" type="radio" id="medium-daily" checked value="10.68"/>
+                                    {{else}}
+                                        <input class="with-gap" name="group1" type="radio" id="medium-daily" value="10.68"/>
+                                    {{/if}}
+                                    <label for="medium-daily">Srednja</label>
+                                </p>
+                                <p>
+                                    {{#if (dailyValue 21.39 matchData.editedData.dailyAmount)}}
+                                        <input class="with-gap" name="group1" type="radio" id="large-daily" checked value="21.39"/>
+                                    {{else}}
+                                        <input class="with-gap" name="group1" type="radio" id="large-daily" value="21.39"/>
+                                    {{/if}}
+                                    <label for="large-daily">Velika</label>
+                                </p>
+                            </div>
+                        </div>
+                    {{/if}}
+                </form>
+            </div>
+        </div>
+            <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Prekliči</a>
+                <a href="#!" class=" modal-action waves-effect waves-green btn-flat save-match-data">Shrani</a>
+            </div>
+        </div>
+</template>
