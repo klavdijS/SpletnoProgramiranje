@@ -87,8 +87,6 @@ Template.registration.onRendered(() => {
                 }
             };
 
-            console.log(user);
-
             Meteor.call('usernameExists', user, (err, res) => {
                 if (err) {
                     console.log(err)
@@ -162,6 +160,7 @@ Template.login.onRendered(() => {
             $('#login-loader').removeClass('hidden');
             Meteor.loginWithPassword(user.email, user.password, function (err) {
                 if (err) {
+                    $('#login-loader').addClass('hidden');
                     $('.username_exists').css('visibility', 'visible');
                 } else {
                     Meteor.call('updateMatches',Meteor.user(),(err,res) => {
